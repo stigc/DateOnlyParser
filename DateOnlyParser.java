@@ -17,18 +17,19 @@ import java.util.GregorianCalendar;
 * - Delimiters can be everything but 'd', 'm' or 'y'
 * - Calendar is always GregorianCalendar
 * - Uppercase 'D', 'M' or 'Y' also matches date parts
+* - Not thread safe
 * 
 * Parseable samples 
-*  	"d-m-y" 	  	"1-11-1974"
-*  	"d.m.y" 	  	"01.11.1974"
+*  	"d-m-y"			"1-11-1974"
+*  	"d.m.y"			"01.11.1974"
 *  	"d m y"			"1 11 1974"
 *  	"dd/mm-yyyy"	"01/11-1974"
 *	"yyyymmdd"		"19741101"
 *	"y"				"1974"
 * 
 * Unparsable samples (throws ParseException)
-*  	"d-m-y" 	  	"1-11/1974"
-*  	"dd-mm-yyyy" 	"1-11-1974"
+*  	"d-m-y"			"1-11/1974"
+*  	"dd-mm-yyyy"	"1-11-1974"
 *  	"d-m-y"			"19-11-1974 "
 *  	"d-m-y"			" 19-11-1974"
 *  	"y"				"1-11-1974" 
@@ -73,7 +74,7 @@ public class DateOnlyParser
 		return c >= '0' && c <= '9';
 	}
 	
-	public Date parse(String val) throws NullPointerException, ParseException
+	public Date parseExact(String val) throws NullPointerException, ParseException
 	{
 		if (val == null) 
 			throw new NullPointerException(val);

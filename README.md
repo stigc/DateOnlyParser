@@ -6,3 +6,8 @@ Time is not supported
 
 		 Date Date = new DateOnlyParser("yyyy-mm-dd")
 		 	.parseExact("2022-11-22");
+
+If you are using Java 1.8+ you should not use this implementation. Instead use LocalDate
+
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("y M d");
+		LocalDate date = LocalDate.parse("2022 11 19", formatter);
